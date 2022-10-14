@@ -1,0 +1,35 @@
+<div class="category">
+  <div class="top">
+    <h1 class="title">Danh mục sản phẩm</h1>
+
+    <a  routerLink="/add">
+        <button type="button" class="btn btn-success">
+            <ion-icon name="add-outline"></ion-icon> Thêm
+        </button>
+    </a>
+  </div>
+  <div class="category-list">
+    <ul class="items">
+        <li class="item" *ngFor="let item of data">
+            <div class="category-left">
+                <div class="category-name">
+                    {{item.category}}
+                </div>
+                <div class="category-amount">
+                    Số lượng: {{item.amountWarning}}
+                </div>
+            </div>
+            <div class="category-right">
+                <a [routerLink]="['/edit', item.id]">
+                    <div class="icon-edit">
+                        <ion-icon name="create-outline"></ion-icon>
+                    </div>
+                </a>
+                <div class="icon-remove" (click)="delete(item.id)">
+                    <ion-icon name="trash-outline"></ion-icon>
+                </div>
+            </div>
+        </li>
+    </ul>
+  </div>
+</div>

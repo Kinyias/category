@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "fir-app-91af5": {
+      "hosting": {
+        "demo-app": [
+          "fir-app-91af5"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "fir-app-91af5"
+  }
+}

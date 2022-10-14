@@ -1,0 +1,133 @@
+@import "../../global-color.scss";
+h1 {
+  color: $main-color;
+}
+.edit{
+  background-color: #fff;
+  margin-top: 2rem;
+  padding: 2rem;
+  border-radius: 8px;
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    ion-icon[name="save-outline"] {
+      padding: 0.5rem;
+    }
+    .btn-success {
+      padding: 0.5rem 1.2rem;
+      background-color: $sub-color;
+      border: none;
+      font-size: 1.8rem;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border-radius: 8px;
+    }
+  }
+  .form-add-product {
+    padding: 2rem;
+    .upload-img {
+      background-color: #f1f2f6;
+      padding: 4rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 12px;
+      cursor: pointer;
+      ion-icon[name="image-outline"] {
+        font-size: 8rem;
+        color: #808080;
+      }
+    }
+    label {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    .relative {
+      position: relative;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      padding: 0 2rem;
+      padding-bottom: 2rem;
+      .input-group{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+        ion-icon[name="refresh"]{
+          font-size: 3rem;
+          transform: rotate(50deg);
+          cursor: pointer;
+          padding: 0.5rem;
+        }
+      }
+      .unit{
+        border: 12px;
+        border: 1px solid #cecece;
+        font-size: 2rem;
+        padding: 0.5rem 1rem;
+        transform: translateY(65%);
+      }
+      input {
+        font-size: 2rem;
+        border-radius: 8px;
+        padding: 0.5rem 1rem;
+        border: 1px solid #cecece;
+        outline: none;
+        width: 100%;
+      }
+      input:focus {
+        border: 1px solid $main-color;
+      }
+      .find-icon {
+        width: 2rem;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        transform: translate(-150%, -150%);
+      }
+      .validate-group{
+        height: 0.8rem;
+      }
+      .validate-error,.validate-success{
+        padding: .5rem;
+      }
+      .validate-success{
+        color: $sub-color;
+      }
+      .validate-error{
+        color: red;
+      }
+    }
+    .bottom-form {
+      margin-top: 2rem;
+    }
+    .group-checkbox {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 1rem 0;
+      max-width: 50rem;
+      width: 100%;
+      .form-check {
+        margin-left: 4rem;
+        label {
+          font-weight: 400;
+        }
+
+        input {
+          font-size: 2rem;
+          cursor: pointer;
+        }
+        input:checked {
+          background-color: $sub-color;
+          border: none;
+        }
+      }
+    }
+  }
+}

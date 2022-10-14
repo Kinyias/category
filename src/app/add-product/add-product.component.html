@@ -1,0 +1,326 @@
+<div class="add">
+  <div
+  class="form-add-product"
+  >
+  <form #addForm="ngForm" (ngSubmit)="onSubmit(addForm.value)" [formGroup]="validationForm">
+  <div class="top">
+      <h1 class="title">Thêm sản phẩm</h1>
+      <button
+        type="submit"
+        class="btn btn-success"
+        [disabled]="!validationForm.valid"
+      >
+        <ion-icon name="save-outline"></ion-icon> Lưu
+      </button>
+    </div>
+      <div class="row">
+        <div class="upload-img col-2">
+          <ion-icon name="image-outline"></ion-icon>
+        </div>
+        <div class="col-10">
+          <div class="form-group">
+            <label for="name">Tên sản phẩm* </label>
+            <input
+              mdbValidate
+              mdbInput
+              id="name"
+              type="text"
+              placeholder="Nhập tên sản phẩm"
+              formControlName="name"
+              required
+            />
+            <div class="validate-group">
+              <div
+                class="validate-error"
+                *ngIf="name?.invalid && (name?.dirty || name?.touched)"
+              >
+                Input invalid
+              </div>
+              <div
+                class="validate-success"
+                *ngIf="name?.valid && (name?.dirty || name?.touched)"
+              >
+                Input valid
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group relative">
+                <label for="category">Danh mục* </label>
+                <input
+                  mdbValidate
+                  mdbInput
+                  type="text"
+                  id="category"
+                  placeholder="Vui lòng chọn danh mục"
+                  [formControl]="control"
+                  [matAutocomplete]="auto"
+                  formControlName="category"
+                  #inputchange
+                  (input)="onChange(inputchange)"
+                  required
+                />
+                <mat-autocomplete
+                  #auto="matAutocomplete"
+                  (optionSelected)="selectOption($event)"
+                >
+                  <mat-option
+                    *ngFor="let option of filteredOption | async"
+                    [value]="option"
+                  >
+                    {{ option }}
+                  </mat-option>
+                </mat-autocomplete>
+                <img
+                  class="find-icon"
+                  src="../../assets/icon/icons8-search.svg"
+                />
+              </div>
+              <!-- <div class="validate-group">
+                <div
+                  class="validate-error"
+                  *ngIf="
+                    category?.invalid && (category?.dirty || category?.touched)
+                  "
+                >
+                  Input invalid
+                </div>
+                <div
+                  class="validate-success"
+                  *ngIf="
+                    category?.valid && (category?.dirty || category?.touched)
+                  "
+                >
+                  Input valid
+                </div>
+              </div> -->
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="brand">Thương hiệu </label>
+                <input
+                  mdbValidate
+                  mdbInput
+                  id="brand"
+                  type="text"
+                  placeholder="Nhập thương hiệu"
+                  formControlName="brand"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-form">
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="price">Giá nhập* </label>
+              <input
+                mdbValidate
+                mdbInput
+                id="price"
+                type="text"
+                placeholder="0 VND"
+                formControlName="price"
+              />
+              <div class="validate-group">
+                <div
+                  class="validate-error"
+                  *ngIf="price?.invalid && (price?.dirty || price?.touched)"
+                >
+                Mời kí tự là số
+                </div>
+                <div
+                  class="validate-success"
+                  *ngIf="price?.valid && (price?.dirty || price?.touched)"
+                >
+                  Input valid
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="unit">Đơn vị* </label>
+              <input
+                mdbValidate
+                mdbInput
+                id="unit"
+                type="text"
+                placeholder="Nhập đơn vị"
+                formControlName="unit"
+              />
+              <div class="validate-group">
+                <div
+                  class="validate-error"
+                  *ngIf="unit?.invalid && (unit?.dirty || unit?.touched)"
+                >
+                  Input invalid
+                </div>
+                <div
+                  class="validate-success"
+                  *ngIf="unit?.valid && (unit?.dirty || unit?.touched)"
+                >
+                  Input valid
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="salePrice">Giá bán buôn/bán sỉ* </label>
+              <input
+                id="salePrice"
+                type="text"
+                placeholder="0 VND"
+                formControlName="salePrice"
+              />
+              <div class="validate-group">
+                <div
+                  class="validate-error"
+                  *ngIf="
+                    salePrice?.invalid &&
+                    (salePrice?.dirty || salePrice?.touched)
+                  "
+                >
+                  Mời kí tự là số
+                </div>
+                <div
+                  class="validate-success"
+                  *ngIf="
+                    salePrice?.valid && (salePrice?.dirty || salePrice.touched)
+                  "
+                >
+                  Input valid
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="barcode">Barcode </label>
+              <div class="input-group">
+                <input
+                  id="barcode"
+                  type="text"
+                  placeholder="Nhập barcode hoặc sử dụng máy scan"
+                  formControlName="barcode"
+                />
+                <ion-icon name="refresh"></ion-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="retailPrice">Giá bán lẻ* </label>
+              <input
+                id="retailPrice"
+                type="text"
+                placeholder="0 VND"
+                formControlName="retailPrice"
+              />
+              <div class="validate-group">
+                <div
+                  class="validate-error"
+                  *ngIf="
+                    retailPrice?.invalid &&
+                    (retailPrice?.dirty || retailPrice?.touched)
+                  "
+                >
+                Mời kí tự là số
+                </div>
+                <div
+                  class="validate-success"
+                  *ngIf="
+                    retailPrice?.valid &&
+                    (retailPrice?.dirty || retailPrice?.touched)
+                  "
+                >
+                  Input valid
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="amountWarning">Số lượng cảnh báo hết hàng* </label>
+              <input
+                id="amountWarning"
+                type="text"
+                placeholder="Nhập đơn vị"
+                formControlName="amountWarning"
+              />
+              <div class="validate-group">
+                <div
+                  class="validate-error"
+                  *ngIf="
+                    amountWarning?.invalid &&
+                    (amountWarning?.dirty || amountWarning?.touched)
+                  "
+                >
+                Mời kí tự là số
+                </div>
+                <div
+                  class="validate-success"
+                  *ngIf="
+                    amountWarning?.valid &&
+                    (amountWarning?.dirty || amountWarning?.touched)
+                  "
+                >
+                  Input valid
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="group-checkbox">
+        <div class="form-check">
+          <input
+          mdbCheckbox
+          class="form-check-input"
+          type="checkbox"
+          value="Cho phép bán"
+          id="chophepban"
+          [checked]="true"
+          formControlName="allowSale"
+        />
+        <label class="form-check-label" for="chophepban"> Cho phép bán </label>
+      </div>
+      <div class="form-check">
+        <input
+        mdbCheckbox
+        class="form-check-input"
+        type="checkbox"
+        value="Bán nhanh"
+        id="bannhanh"
+        formControlName="saleFast"
+        [checked]="true"
+        />
+        <label class="form-check-label" for="bannhanh"> Bán nhanh </label>
+      </div>
+      <div class="form-check">
+        <input
+          mdbCheckbox
+          class="form-check-input"
+          type="checkbox"
+          value="Lô, hạn sử dụng"
+          id="lohansudung"
+          [checked]="false"
+          formControlName="expire"
+          />
+          <label class="form-check-label" for="lohansudung">
+            Lô, hạn sử dụng
+          </label>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+  

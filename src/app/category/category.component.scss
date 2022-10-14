@@ -1,0 +1,62 @@
+@import "../../global-color.scss";
+h1 {
+  color: $main-color;
+}
+.category {
+  background-color: #fff;
+  margin-top: 2rem;
+  padding: 4rem;
+  border-radius: 8px;
+  font-size: 2rem;
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .btn-success {
+      padding: 0.5rem 1.2rem;
+      background-color: $sub-color;
+      border: none;
+      font-size: 1.8rem;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border-radius: 8px;
+    }
+  }
+  .items{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .item{
+    margin-top: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid #cecece;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 48%;
+  }
+  .icon-edit, .icon-remove{
+    font-size: 2.5rem;
+    padding: 0 1rem;
+    color: #808080;
+    cursor: pointer;
+  }
+  .icon-edit{
+    border-right: 1px solid #cecece ;
+  }
+  &-name{
+    font-weight: 600;
+  }
+  &-amount{
+    color: #808088;
+    font-size: 1.6rem;
+  }
+  &-right{
+    display: flex;
+    
+  }
+}
